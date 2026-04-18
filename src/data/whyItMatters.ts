@@ -1,0 +1,32 @@
+/**
+ * One-line "why this matters in 2026" trend per skill id.
+ * Used as a badge in the expanded panel.
+ */
+export const WHY_IT_MATTERS_2026: Record<number, string> = {
+  1: '2026 hiring driver #1 — every product team now ships LLM-backed features.',
+  2: 'Still the universal AI/ML language; no serious role lets you skip it.',
+  3: 'Prompt engineering matured into a core engineering discipline (specs, evals, contracts).',
+  4: 'Multi-provider fluency (OpenAI + Anthropic + open models) is now table-stakes.',
+  5: 'AI workloads broke classic system design — distributed inference and queueing are hot.',
+  6: 'Agentic systems are the #1 differentiator on senior AI Engineer JDs in 2026.',
+  7: 'RAG is the default pattern for any product touching private/proprietary data.',
+  8: 'Orchestration frameworks (LangGraph, LlamaIndex) are now expected, not nice-to-have.',
+  9: 'AWS Bedrock + SageMaker dominate enterprise GenAI deployments.',
+  10: 'MLOps for LLMs (LLMOps) is its own job family now — huge talent gap.',
+  11: 'Eval-driven development is replacing "vibes-based" prompt iteration.',
+  12: 'Production observability (LangSmith, Langfuse, Arize) is mandatory at scale.',
+  13: 'Vector DBs (pgvector, Pinecone, Weaviate) underpin every RAG system.',
+  14: 'Guardrails and human-in-the-loop are now compliance requirements, not optional.',
+  15: 'NLP fundamentals separate "prompt jockeys" from real ML engineers.',
+  16: 'GCP Vertex AI is gaining share — multi-cloud GenAI fluency pays.',
+  17: 'Azure + OpenAI is the enterprise default; massive hiring demand.',
+  18: 'pgvector turned Postgres into a serious vector store; everyone uses it.',
+  19: 'EU AI Act + state laws made AI ethics & privacy a hard hiring filter.',
+  20: 'TypeScript-based AI stacks (Vercel AI SDK, LangChain.js) exploded in 2025–26.',
+  21: 'Distributed data (Spark, Beam) still gates senior MLE roles at scale.',
+  22: 'Fine-tuning (LoRA/DPO) is back as open models close the quality gap.',
+  23: 'Full-stack AI engineers who can ship UI are 2× more hireable.',
+  24: 'Node.js dominates AI app backends and agent tool servers.',
+  25: 'Document/vector hybrid stores are common in agent memory.',
+  26: 'BM25 + vector hybrid search is the standard for production RAG.',
+};

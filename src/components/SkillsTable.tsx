@@ -1,5 +1,6 @@
 import { Fragment, useMemo, useState } from 'react';
 import {
+  Alert,
   Box,
   Chip,
   Collapse,
@@ -34,10 +35,18 @@ import PlayLessonIcon from '@mui/icons-material/PlayLesson';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { SKILLS, type Skill } from '../data/skills';
 import { getSkillDetails } from '../data/skillDetails';
+import { WHY_IT_MATTERS_2026 } from '../data/whyItMatters';
+import { useProgress, type SkillStatus } from '../hooks/useProgress';
+import OverallProgress from './OverallProgress';
+import PhaseSummary from './PhaseSummary';
 
-type SortKey = 'learnOrder' | 'name';
+type SortKey = 'learnOrder' | 'name' | 'status';
 
 const phaseColor: Record<string, 'success' | 'info' | 'warning' | 'default'> = {
   'Phase 1 – Foundations': 'success',
@@ -46,7 +55,23 @@ const phaseColor: Record<string, 'success' | 'info' | 'warning' | 'default'> = {
   'Phase 4 – Differentiators': 'default',
 };
 
+const statusRank: Record<SkillStatus, number> = {
+  'in-progress': 0,
+  'not-started': 1,
+  done: 2,
+};
+
+const statusMeta: Record<
+  SkillStatus,
+  { label: string; color: 'default' | 'info' | 'success'; Icon: typeof RadioButtonUncheckedIcon }
+> = {
+  'not-started': { label: 'Start', color: 'default', Icon: RadioButtonUncheckedIcon },
+  'in-progress': { label: 'In progress', color: 'info', Icon: HourglassTopIcon },
+  done: { label: 'Done', color: 'success', Icon: TaskAltIcon },
+};
+
 export default function SkillsTable() {
+  const { getStatus, cycleStatus, reset } = useProgress();
   const [sortKey, setSortKey] = useState<SortKey>('learnOrder');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [query, setQuery] = useState('');
@@ -84,15 +109,20 @@ export default function SkillsTable() {
           return (a.learnOrder - b.learnOrder) * dir;
         case 'name':
           return a.name.localeCompare(b.name) * dir;
+        case 'status':
+          return (statusRank[getStatus(a.id)] - statusRank[getStatus(b.id)]) * dir;
       }
     });
     return filtered;
-  }, [sortKey, sortDir, query, phaseFilter]);
+  }, [sortKey, sortDir, query, phaseFilter, getStatus]);
 
   const phases = Array.from(new Set(SKILLS.map((s) => s.phase)));
 
   return (
     <Box sx={{ width: '100%' }}>
+      <OverallProgress getStatus={getStatus} onReset={reset} />
+      <PhaseSummary getStatus={getStatus} />
+
       <Box
         sx={{
           mb: 2,
@@ -154,15 +184,39 @@ export default function SkillsTable() {
               </TableCell>
               <TableCell sx={{ fontWeight: 600 }}>Category</TableCell>
               <TableCell sx={{ fontWeight: 600 }}>Phase</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>
+                <TableSortLabel
+                  active={sortKey === 'status'}
+                  direction={sortDir}
+                  onClick={() => handleSort('status')}
+                >
+                  Progress
+                </TableSortLabel>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((s) => {
               const details = getSkillDetails(s);
               const open = expandedId === s.id;
+              const status = getStatus(s.id);
+              const meta = statusMeta[status];
+              const rowBg =
+                status === 'done'
+                  ? 'rgba(46, 125, 50, 0.06)'
+                  : status === 'in-progress'
+                  ? 'rgba(2, 136, 209, 0.06)'
+                  : 'transparent';
               return (
                 <Fragment key={s.id}>
-                  <TableRow hover sx={{ '& > *': { borderBottom: 'unset' } }}>
+                  <TableRow
+                    hover
+                    sx={{
+                      '& > *': { borderBottom: 'unset' },
+                      bgcolor: rowBg,
+                      opacity: status === 'done' ? 0.85 : 1,
+                    }}
+                  >
                     <TableCell>
                       <IconButton
                         aria-label="expand row"
@@ -209,9 +263,22 @@ export default function SkillsTable() {
                         color={phaseColor[s.phase]}
                       />
                     </TableCell>
+                    <TableCell>
+                      <Tooltip title="Click to cycle: not started → in progress → done" arrow>
+                        <Chip
+                          icon={<meta.Icon />}
+                          label={meta.label}
+                          size="small"
+                          color={meta.color}
+                          variant={status === 'not-started' ? 'outlined' : 'filled'}
+                          onClick={() => cycleStatus(s.id)}
+                          sx={{ cursor: 'pointer', minWidth: 110 }}
+                        />
+                      </Tooltip>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell sx={{ p: 0, border: 0 }} colSpan={5}>
+                    <TableCell sx={{ p: 0, border: 0 }} colSpan={6}>
                       <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box
                           sx={{
@@ -254,6 +321,17 @@ export default function SkillsTable() {
                               />
                             )}
                           </Box>
+
+                          {WHY_IT_MATTERS_2026[s.id] && (
+                            <Alert
+                              severity="info"
+                              icon={<TrendingUpIcon fontSize="inherit" />}
+                              sx={{ mb: 2 }}
+                            >
+                              <strong>Why it matters in 2026:</strong>{' '}
+                              {WHY_IT_MATTERS_2026[s.id]}
+                            </Alert>
+                          )}
 
                           {/* What to learn (sentence-wise) */}
                           {details.whatToLearn.length > 0 && (
