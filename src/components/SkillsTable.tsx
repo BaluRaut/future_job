@@ -35,10 +35,10 @@ import PlayLessonIcon from '@mui/icons-material/PlayLesson';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import { COMPANIES, SKILLS, type Skill } from '../data/skills';
+import { SKILLS, type Skill } from '../data/skills';
 import { getSkillDetails } from '../data/skillDetails';
 
-type SortKey = 'learnOrder' | 'rating' | 'demand' | 'name';
+type SortKey = 'learnOrder' | 'rating' | 'name';
 
 const phaseColor: Record<string, 'success' | 'info' | 'warning' | 'default'> = {
   'Phase 1 – Foundations': 'success',
@@ -85,8 +85,6 @@ export default function SkillsTable() {
           return (a.learnOrder - b.learnOrder) * dir;
         case 'rating':
           return (a.rating - b.rating) * dir;
-        case 'demand':
-          return (a.appearsIn.length - b.appearsIn.length) * dir;
         case 'name':
           return a.name.localeCompare(b.name) * dir;
       }
@@ -168,16 +166,6 @@ export default function SkillsTable() {
                   Importance
                 </TableSortLabel>
               </TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>
-                <TableSortLabel
-                  active={sortKey === 'demand'}
-                  direction={sortDir}
-                  onClick={() => handleSort('demand')}
-                >
-                  Demand
-                </TableSortLabel>
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Companies</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -236,29 +224,9 @@ export default function SkillsTable() {
                     <TableCell>
                       <Rating value={s.rating} readOnly size="small" />
                     </TableCell>
-                    <TableCell>
-                      <Chip
-                        label={`${s.appearsIn.length}/${COMPANIES.length}`}
-                        size="small"
-                        color={
-                          s.appearsIn.length >= 5
-                            ? 'error'
-                            : s.appearsIn.length >= 3
-                            ? 'warning'
-                            : 'default'
-                        }
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                        {s.appearsIn.map((c) => (
-                          <Chip key={c} label={c} size="small" variant="outlined" />
-                        ))}
-                      </Box>
-                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell sx={{ p: 0, border: 0 }} colSpan={8}>
+                    <TableCell sx={{ p: 0, border: 0 }} colSpan={6}>
                       <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box
                           sx={{
