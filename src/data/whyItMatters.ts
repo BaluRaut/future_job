@@ -37,4 +37,10 @@ export const WHY_IT_MATTERS_2026: Record<number, string> = {
   32: 'Inference cost is the #1 unit-economics problem in 2026 — vLLM/quantization knowledge pays.',
   33: 'Constrained decoding for reliable JSON is now a hiring filter for production AI roles.',
   34: 'Naïve RAG is dead — hybrid + rerankers + GraphRAG are the production standard.',
+  35: 'Graph DBs underpin GraphRAG, fraud, recsys, and knowledge graphs — Neo4j is dominant.',
+  36: 'Knowledge graphs are becoming the structured memory layer for serious agentic systems.',
+  37: 'Anthropic-specific tooling (Computer Use, Sub-agents, Skills) is now its own discipline.',
+  38: 'Persistent agent memory unlocks multi-session products — the next RAG-sized opportunity.',
+  39: 'Computer Use & browser agents are reshaping RPA — fastest-growing automation category.',
+  40: 'Time-series & columnar DBs power AI observability, feature stores, and analytics surfaces.',
 };
