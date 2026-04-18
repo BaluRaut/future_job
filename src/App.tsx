@@ -19,9 +19,6 @@ function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             AI / ML Engineer — Skill Roadmap
           </Typography>
-          <Typography variant="caption" sx={{ opacity: 0.8 }}>
-            Based on 7 WeWorkRemotely listings
-          </Typography>
         </Toolbar>
       </AppBar>
 
