@@ -31,6 +31,10 @@ import BuildIcon from '@mui/icons-material/Build';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import PlayLessonIcon from '@mui/icons-material/PlayLesson';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import { COMPANIES, SKILLS, type Skill } from '../data/skills';
 import { getSkillDetails } from '../data/skillDetails';
 
@@ -266,13 +270,99 @@ export default function SkillsTable() {
                             borderColor: 'grey.200',
                           }}
                         >
-                          <Typography
-                            variant="subtitle2"
-                            gutterBottom
-                            sx={{ color: 'primary.main' }}
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexWrap: 'wrap',
+                              alignItems: 'center',
+                              gap: 1.5,
+                              mb: 2,
+                            }}
                           >
-                            Common things to learn under “{s.name}”
-                          </Typography>
+                            <Typography
+                              variant="subtitle1"
+                              sx={{ color: 'primary.main', fontWeight: 700 }}
+                            >
+                              {s.name} — study guide
+                            </Typography>
+                            <Chip
+                              icon={<AccessTimeIcon />}
+                              label={details.timeEstimate}
+                              size="small"
+                              variant="outlined"
+                            />
+                            {details.miniProject && (
+                              <Chip
+                                icon={<RocketLaunchIcon />}
+                                label={`Mini-project: ${details.miniProject}`}
+                                size="small"
+                                color="secondary"
+                                variant="outlined"
+                              />
+                            )}
+                          </Box>
+
+                          {/* What to learn (sentence-wise) */}
+                          {details.whatToLearn.length > 0 && (
+                            <Box sx={{ mb: 2 }}>
+                              <Box
+                                sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}
+                              >
+                                <PlayLessonIcon fontSize="small" color="action" />
+                                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                                  What to learn (in order)
+                                </Typography>
+                              </Box>
+                              <Box component="ol" sx={{ m: 0, pl: 3 }}>
+                                {details.whatToLearn.map((step, idx) => (
+                                  <li key={idx}>
+                                    <Typography
+                                      variant="body2"
+                                      sx={{ mb: 0.5, lineHeight: 1.6 }}
+                                    >
+                                      {step}
+                                    </Typography>
+                                  </li>
+                                ))}
+                              </Box>
+                            </Box>
+                          )}
+
+                          {/* How to verify learning */}
+                          {details.verify.length > 0 && (
+                            <Box sx={{ mb: 2 }}>
+                              <Box
+                                sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}
+                              >
+                                <CheckCircleOutlineIcon fontSize="small" color="success" />
+                                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                                  How to verify you’ve learned it
+                                </Typography>
+                              </Box>
+                              <Box component="ul" sx={{ m: 0, pl: 3, listStyle: 'none' }}>
+                                {details.verify.map((v, idx) => (
+                                  <li key={idx} style={{ marginBottom: 4 }}>
+                                    <Box
+                                      sx={{
+                                        display: 'flex',
+                                        alignItems: 'flex-start',
+                                        gap: 1,
+                                      }}
+                                    >
+                                      <CheckCircleOutlineIcon
+                                        sx={{ fontSize: 16, mt: '3px', color: 'success.main' }}
+                                      />
+                                      <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                                        {v.text}
+                                      </Typography>
+                                    </Box>
+                                  </li>
+                                ))}
+                              </Box>
+                            </Box>
+                          )}
+
+                          <Divider sx={{ my: 2 }} />
 
                           <Box
                             sx={{
@@ -282,7 +372,6 @@ export default function SkillsTable() {
                                 md: '1fr 1fr 1fr',
                               },
                               gap: 2,
-                              mt: 1,
                             }}
                           >
                             {/* Tools */}
