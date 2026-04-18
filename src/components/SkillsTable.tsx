@@ -10,7 +10,6 @@ import {
   Link,
   MenuItem,
   Paper,
-  Rating,
   Select,
   type SelectChangeEvent,
   Table,
@@ -38,7 +37,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import { SKILLS, type Skill } from '../data/skills';
 import { getSkillDetails } from '../data/skillDetails';
 
-type SortKey = 'learnOrder' | 'rating' | 'name';
+type SortKey = 'learnOrder' | 'name';
 
 const phaseColor: Record<string, 'success' | 'info' | 'warning' | 'default'> = {
   'Phase 1 – Foundations': 'success',
@@ -83,8 +82,6 @@ export default function SkillsTable() {
       switch (sortKey) {
         case 'learnOrder':
           return (a.learnOrder - b.learnOrder) * dir;
-        case 'rating':
-          return (a.rating - b.rating) * dir;
         case 'name':
           return a.name.localeCompare(b.name) * dir;
       }
@@ -157,15 +154,6 @@ export default function SkillsTable() {
               </TableCell>
               <TableCell sx={{ fontWeight: 600 }}>Category</TableCell>
               <TableCell sx={{ fontWeight: 600 }}>Phase</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>
-                <TableSortLabel
-                  active={sortKey === 'rating'}
-                  direction={sortDir}
-                  onClick={() => handleSort('rating')}
-                >
-                  Importance
-                </TableSortLabel>
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -221,12 +209,9 @@ export default function SkillsTable() {
                         color={phaseColor[s.phase]}
                       />
                     </TableCell>
-                    <TableCell>
-                      <Rating value={s.rating} readOnly size="small" />
-                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell sx={{ p: 0, border: 0 }} colSpan={6}>
+                    <TableCell sx={{ p: 0, border: 0 }} colSpan={5}>
                       <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box
                           sx={{
