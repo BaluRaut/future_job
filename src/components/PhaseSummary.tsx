@@ -7,13 +7,15 @@ const PHASES: Phase[] = [
   'Phase 2 – Applied AI',
   'Phase 3 – Production & MLOps',
   'Phase 4 – Differentiators',
+  'Phase 5 – Future-Ready (2026+)',
 ];
 
-const phaseColor: Record<Phase, 'success' | 'info' | 'warning' | 'inherit'> = {
+const phaseColor: Record<Phase, 'success' | 'info' | 'warning' | 'inherit' | 'secondary'> = {
   'Phase 1 – Foundations': 'success',
   'Phase 2 – Applied AI': 'info',
   'Phase 3 – Production & MLOps': 'warning',
   'Phase 4 – Differentiators': 'inherit',
+  'Phase 5 – Future-Ready (2026+)': 'secondary',
 };
 
 const phaseAccent: Record<Phase, string> = {
@@ -21,6 +23,7 @@ const phaseAccent: Record<Phase, string> = {
   'Phase 2 – Applied AI': '#0288d1',
   'Phase 3 – Production & MLOps': '#ed6c02',
   'Phase 4 – Differentiators': '#616161',
+  'Phase 5 – Future-Ready (2026+)': '#9c27b0',
 };
 
 interface Props {

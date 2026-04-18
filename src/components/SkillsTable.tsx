@@ -48,11 +48,12 @@ import PhaseSummary from './PhaseSummary';
 
 type SortKey = 'learnOrder' | 'name' | 'status';
 
-const phaseColor: Record<string, 'success' | 'info' | 'warning' | 'default'> = {
+const phaseColor: Record<string, 'success' | 'info' | 'warning' | 'default' | 'secondary'> = {
   'Phase 1 – Foundations': 'success',
   'Phase 2 – Applied AI': 'info',
   'Phase 3 – Production & MLOps': 'warning',
   'Phase 4 – Differentiators': 'default',
+  'Phase 5 – Future-Ready (2026+)': 'secondary',
 };
 
 const statusRank: Record<SkillStatus, number> = {

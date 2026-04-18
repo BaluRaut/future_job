@@ -21,7 +21,8 @@ export type Phase =
   | 'Phase 1 – Foundations'
   | 'Phase 2 – Applied AI'
   | 'Phase 3 – Production & MLOps'
-  | 'Phase 4 – Differentiators';
+  | 'Phase 4 – Differentiators'
+  | 'Phase 5 – Future-Ready (2026+)';
 
 export interface Skill {
   id: number;
@@ -274,5 +275,85 @@ export const SKILLS: Skill[] = [
     learnOrder: 4,
     rating: 2,
     phase: 'Phase 4 – Differentiators',
+  },
+  {
+    id: 27,
+    name: 'Multi-Agent Protocols (MCP, A2A)',
+    category: 'AI / GenAI',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 5,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Anthropic MCP and Google A2A are the new “REST” for tool/agent interop.',
+  },
+  {
+    id: 28,
+    name: 'Reasoning Models (o-series, R1, Thinking)',
+    category: 'AI / GenAI',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 5,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Test-time compute changes prompting, latency, and cost trade-offs.',
+  },
+  {
+    id: 29,
+    name: 'Small / On-device Models (Phi, Gemma, Qwen)',
+    category: 'AI / GenAI',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 4,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Edge inference for privacy & cost; SLM fine-tuning is a real job now.',
+  },
+  {
+    id: 30,
+    name: 'Evals as Code (Braintrust, Inspect, Promptfoo)',
+    category: 'MLOps',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 5,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'CI for prompts — “Eval engineer” is becoming a dedicated role.',
+  },
+  {
+    id: 31,
+    name: 'AI Security (OWASP LLM Top 10, Red-teaming)',
+    category: 'AI Safety',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 5,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Prompt injection, jailbreaks, data exfiltration — EU AI Act mandates this.',
+  },
+  {
+    id: 32,
+    name: 'Inference Optimization (vLLM, TensorRT, Triton)',
+    category: 'MLOps',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 4,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Batching, quantization, KV-cache, speculative decoding — cut serving cost 5–10x.',
+  },
+  {
+    id: 33,
+    name: 'Structured Output (Outlines, Instructor, JSON Schema)',
+    category: 'AI / GenAI',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 5,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Constrained decoding for reliable JSON / tool calls — a hiring filter.',
+  },
+  {
+    id: 34,
+    name: 'Retrieval 2.0 (Hybrid + Rerankers + GraphRAG)',
+    category: 'AI / GenAI',
+    appearsIn: [],
+    learnOrder: 5,
+    rating: 5,
+    phase: 'Phase 5 – Future-Ready (2026+)',
+    notes: 'Naïve RAG is dead — BM25+vector, Cohere Rerank, ColBERT, knowledge graphs.',
   },
 ];

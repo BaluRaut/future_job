@@ -29,4 +29,12 @@ export const WHY_IT_MATTERS_2026: Record<number, string> = {
   24: 'Node.js dominates AI app backends and agent tool servers.',
   25: 'Document/vector hybrid stores are common in agent memory.',
   26: 'BM25 + vector hybrid search is the standard for production RAG.',
+  27: 'MCP & A2A are becoming the universal protocols for tool/agent interop — the new “REST”.',
+  28: 'Reasoning models (o-series, R1, Thinking) are reshaping prompting, latency, and cost decisions.',
+  29: 'On-device SLMs unlock private, offline, near-zero-cost AI — a fast-growing job category.',
+  30: 'Eval-driven development is replacing vibes-based prompting; “eval engineer” is a real role.',
+  31: 'AI red-teaming is mandated by EU AI Act + insurance — every team needs this skill.',
+  32: 'Inference cost is the #1 unit-economics problem in 2026 — vLLM/quantization knowledge pays.',
+  33: 'Constrained decoding for reliable JSON is now a hiring filter for production AI roles.',
+  34: 'Naïve RAG is dead — hybrid + rerankers + GraphRAG are the production standard.',
 };
