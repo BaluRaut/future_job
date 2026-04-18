@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutlined';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
