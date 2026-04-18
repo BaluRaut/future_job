@@ -45,6 +45,7 @@ import { WHY_IT_MATTERS_2026 } from '../data/whyItMatters';
 import { useProgress, type SkillStatus } from '../hooks/useProgress';
 import OverallProgress from './OverallProgress';
 import PhaseSummary from './PhaseSummary';
+import JdMatcher from './JdMatcher';
 
 type SortKey = 'learnOrder' | 'name' | 'status';
 
@@ -121,6 +122,7 @@ export default function SkillsTable() {
 
   return (
     <Box sx={{ width: '100%' }}>
+      <JdMatcher getStatus={getStatus} />
       <OverallProgress getStatus={getStatus} onReset={reset} />
       <PhaseSummary getStatus={getStatus} />
 
